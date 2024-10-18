@@ -9,7 +9,7 @@ int main()
     string text, word;
     sz lineNo = 0;
 
-    ifstream infile("..\\data\\letter2.txt");
+    ifstream infile("../data/letter2.txt");
     string line;
     while (getline(infile, line)){
         istringstream iss(line);
