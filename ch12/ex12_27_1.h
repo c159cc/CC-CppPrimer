@@ -22,3 +22,4 @@ public:
 };
 
 ostream &print(ostream &os, const QueryResult &qr);
+TextQuery t  = TextQuery(ifstream("text.txt"));

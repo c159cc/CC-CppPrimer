@@ -9,6 +9,7 @@
                 "-g",
                 "-fno-elide-constructors",
                 "${file}",
+                "${workspaceFolder}\\ch12\\learn12_namespaceVariable2.cpp",
                 "-o",
                 "${workspaceFolder}\\out\\${fileBasenameNoExtension}.exe"
             ],

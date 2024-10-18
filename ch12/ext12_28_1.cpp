@@ -1,5 +1,6 @@
 #include "../common/cc.h"
 #include <cctype>
+
 int main()
 {
     using sz = vector<string>::size_type;
@@ -24,7 +25,7 @@ int main()
         lines.push_back(line);
     }
 
-    while(true){
+    do{
         cout<<"Enter a word to search for (or q to quit): "<<endl;
         if(!(cin>>text) || text == "q"){
             break;
@@ -38,8 +39,8 @@ int main()
             for(sz i : mit->second){
                 cout << "line"<<i+1<<": " << lines[i] << endl;
             }
-        } 
-    }
+        }
+    } while (true);
 
     return 0;
 }
