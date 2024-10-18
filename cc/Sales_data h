@@ -1,0 +1,55 @@
+#include "../common/cc.h"
+
+class Sales_data
+{
+  friend istream &operator>>(istream &is, Sales_data &item);
+  friend ostream &operator<<(ostream &os, Sales_data &item);
+  friend Sales_data operator+(const Sales_data &, const Sales_data &);
+  friend bool operator==(const Sales_data &, const Sales_data &);
+  friend bool operator!=(const Sales_data &, const Sales_data &);
+
+public:
+  Sales_data &operator+=(const Sales_data &rhs);
+
+public:
+  Sales_data(const Sales_data &);
+  Sales_data &operator=(const Sales_data &);
+
+  Sales_data() = default;
+  explicit Sales_data(const string &s) : bookNo(s) { cout << "Sales_data(const string &s)" << endl; }
+  Sales_data(const string &s, unsigned n, double p) : bookNo(s), units_sold(n), revenue(p * n)
+  {
+    cout << "Sales_data(const string&s, unsigned n, double p)" << endl;
+  }
+  explicit Sales_data(istream &is)
+  {
+    is >> *this;
+  }
+
+  string isbn() const { return this->bookNo; };
+
+private:
+  inline double avg_price() const;
+  string bookNo;       // 32
+  unsigned units_sold; // 4
+  double revenue;      // 8
+};
+
+bool compareIsbn(const Sales_data &lhs, const Sales_data &rhs)
+{
+  return lhs.isbn() < rhs.isbn();
+}
+Sales_data::Sales_data(const Sales_data &s) : bookNo(s.bookNo), units_sold(s.units_sold), revenue(s.revenue) {}
+Sales_data &Sales_data::operator=(const Sales_data &s)
+{
+  bookNo = s.bookNo;
+  units_sold = s.units_sold;
+  revenue = s.revenue;
+  return *this;
+}
+
+istream &operator>>(istream &is, Sales_data &item);
+ostream &operator<<(ostream &os, Sales_data &item);
+Sales_data operator+(const Sales_data &, const Sales_data &);
+bool operator==(const Sales_data &, const Sales_data &);
+bool operator!=(const Sales_data &, const Sales_data &);
